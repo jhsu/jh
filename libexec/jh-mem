@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "totally memory used: "
+ps aux | awk '{sum+=$6} END {print sum/1024}'
+
+echo "top using processes: "
+ps aux | sort -nk +4 | tail -n 5
