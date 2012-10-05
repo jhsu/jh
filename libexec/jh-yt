@@ -11,5 +11,5 @@ echo "$uploader"
 rm "$uploader.info.json"
 mkdir -p "$uploader"
 cd "$uploader"
-youtube-dl -v --extract-audio --audio-format aac --audio-quality 9 -t "$1"
+youtube-dl -w --extract-audio --audio-format aac --audio-quality 9 -t "$1"
 cd -
