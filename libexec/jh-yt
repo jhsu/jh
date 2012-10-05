@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Usage: jh yt "<url>"
+# Summary: Download youtube audio into a folder with the uploader's name
+# Help: This requires youtube-dl.
+
+set -e
+
+youtube-dl --write-info-json  --skip-download  -o '%(uploader)s' "$1"
+uploader=$(ls *.info.json |head -n1 | cut -d'.' -f1)
+echo "$uploader"
+rm "$uploader.info.json"
+mkdir -p "$uploader"
+cd "$uploader"
+youtube-dl -v --extract-audio --audio-format aac --audio-quality 9 -t "$1"
+cd -
